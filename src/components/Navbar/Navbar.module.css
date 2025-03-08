@@ -1,9 +1,11 @@
-.navbar {
-  background-color: #34c94b;
-  display: flex;
-  align-items: center; /* Vertical centering */
-  justify-content: space-between; /* Logo left me rahega */
-  padding-left: 18px; /* Ensure correct spacing */
-/*   justify-content: flex-start; /* Logo left me rahega */ */
-  
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-primary);
+    width: 100vw;
+    height: 75px;
+    padding: 0px 32px;
+    /* border: 3px solid red; */
 }
