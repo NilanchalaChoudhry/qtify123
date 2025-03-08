@@ -1,6 +1,7 @@
-.logo {
-  margin-left: 18px; /* Adjust as per Cypress test */
-  height: 50px; /* Ensure it has proper height */
-  display: flex;
-  align-items: center;
+.logoDiv{
+height: 34px;
+top: 20px;
+left: 32px; */
+display: flex;
+margin: 14px;
 }
