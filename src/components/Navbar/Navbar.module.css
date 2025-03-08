@@ -1,0 +1,9 @@
+.navbar {
+  background-color: #34c94b;
+}
+.navbar {
+  display: flex;
+  align-items: center; /* Vertical centering */
+  justify-content: space-between; /* Logo left me rahega */
+  padding-left: 18px; /* Ensure correct spacing */
+}

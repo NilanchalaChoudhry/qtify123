@@ -1,0 +1,17 @@
+.feedbackBtn {
+  padding: 10px 16px;
+  background: #121212;
+  color: #34c94b;
+  border-radius: 12px;
+  border: 1px solid var(--primary-color);
+  text-align: center;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.25px;
+  margin-right: 32px;
+  cursor: pointer;
+}
