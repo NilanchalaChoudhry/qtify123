@@ -1,17 +1,14 @@
-import logo from "../../assets/logo.png";
+import React from "react";
 import styles from "./Logo.module.css";
-import { useNavigate } from "react-router-dom";
+import LogoImg from "../../assets/logo.png";
 
-const Logo = () => {
-  const navigate = useNavigate();
-  return (
-    <img
-      onClick={() => navigate("/")}
-      src={logo}
-      alt="logo"
-      className={styles.logo}
-    />
-  );
+const Logo=()=>{
+
+return(
+    <div className={styles.logoDiv}>
+        <img src={LogoImg} width={67} alt="logo"/>
+    </div>
+)
 };
 
 export default Logo;
