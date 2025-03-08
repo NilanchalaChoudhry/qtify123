@@ -1,14 +1,12 @@
+import React from "react";
 import styles from "./Button.module.css";
 
-const Button = ({ text, setFeedbackFlag = () => {} }) => {
-  return (
-    <button
-      onClick={() => setFeedbackFlag(true)}
-      className={styles.feedbackBtn}
-    >
-      {text}
-    </button>
-  );
-};
+const Button=({children})=>{
+    return(
+        <button className={styles.button}>
+        {children}
+        </button>
+    )
+}
 
 export default Button;
