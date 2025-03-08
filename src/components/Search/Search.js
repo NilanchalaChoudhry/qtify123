@@ -1,78 +1,74 @@
-import { ReactComponent as SeachIcon } from "../../assets/search-icon.svg";
-// import SearchItem from "../SearchItem/SearchItem";
+import React from "react";
 import styles from "./Search.module.css";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { ReactComponent as SearchIcon } from "../../assets/search-icon.svg";
+// import useAutocomplete from "@mui/base/useAutocomplete";
+import { useAutocomplete } from "@mui/base";
 
-const Search = ({ placeholder, data }) => {
-  const [filteredData, setFilteredData] = useState(null);
-  const [searchValue, setSearchValue] = useState("");
+import { styled } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
-  // useEffect(()=>{
-  //   setFilteredData(data);
-  // },[data])
+const Listbox = styled("ul")({
+  width: "100%",
+  margin: 0,
+  padding: 0,
+  position: "absolute",
+  borderRadius: "0 0 10px 10px",
+  border: "1px solid var(--color-primary)",
+  top: 60,
+  maxHeight: "500px",
+  zIndex: 10,
+  overflowY: "auto",
+  backgroundColor: "var(--color-black)",
+});
 
-  const onChangeHandler = (e) => {
-    setSearchValue(e.target.value);
-    if (e.target.value === "") {
-      setFilteredData(null);
-      return;
-    }
-    const regEx = new RegExp(`^${e.target.value}`, "i");
-    const ans = data.filter((ele) => ele.title.match(regEx) !== null);
-    console.log(ans);
-    setFilteredData(ans);
-  };
+function Search({ searchData = [], placeholder }) {
+  const {
+    getRootProps,
+    getInputProps,
+    getListboxProps,
+    getOptionProps,
+    groupedOptions,
+  } = useAutocomplete({
+    id: "search-bar",
+    options: searchData,
+    getOptionLabel: (option) => option.title,
+  });
 
-  const onSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
     e.preventDefault();
+    if (groupedOptions.length > 0) {
+      navigate(`/album/${groupedOptions[0].slug}`);
+    }
   };
 
   return (
-    <>
-      <form className={styles.wrapper} onSubmit={onSubmit}>
-        <input
-          type="search"
-          placeholder={placeholder}
-          onChange={onChangeHandler}
-        />
-        <button className={styles.searchBtn} type="submit">
-          <SeachIcon />
-        </button>
-        <div
-          className={
-            !filteredData
-              ? `${styles.searchResults} ${styles.hide}`
-              : `${styles.searchResults}`
-          }
-        >
-          {filteredData && filteredData.length ? (
-            filteredData.map((ele) => {
-              console.log("ss");
-              return (
-                <Link
-                  to={`/albums/${ele.slug}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <SearchItem album={ele} />
-                </Link>
-              );
-            })
-          ) : (
-            <p
-              style={{
-                color: "white",
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              No Albums Found
-            </p>
-          )}
+    <div style={{ position: "relative" }}>
+      <form className={styles.wrapper} onSubmit={handleSubmit}>
+        <div {...getRootProps()}>
+          <input
+            className={styles.search}
+            placeholder={placeholder}
+            required
+            {...getInputProps()}
+          />
         </div>
+        <button className={styles.searchButton} type="submit">
+          <SearchIcon />
+        </button>
       </form>
-    </>
+      {groupedOptions.length > 0 && (
+        <Listbox {...getListboxProps()}>
+          {groupedOptions.map((option, index) => (
+            <li key={option.id} {...getOptionProps({ option, index })}>
+              <p className={styles.albumTitle}>{option.title}</p>
+            </li>
+          ))}
+        </Listbox>
+      )}
+    </div>
   );
-};
+}
 
 export default Search;
