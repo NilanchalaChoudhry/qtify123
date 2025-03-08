@@ -4,4 +4,6 @@
   align-items: center; /* Vertical centering */
   justify-content: space-between; /* Logo left me rahega */
   padding-left: 18px; /* Ensure correct spacing */
+/*   justify-content: flex-start; /* Logo left me rahega */ */
+  
 }
