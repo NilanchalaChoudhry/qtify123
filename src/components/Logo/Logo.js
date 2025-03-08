@@ -1,19 +1,12 @@
-import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import styles from "./Logo.module.css";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Logo = () => {
-  let navigate = null;
-  try {
-    navigate = useNavigate();
-  } catch (error) {
-    console.warn("useNavigate must be used inside a Router");
-  }
-
+  const navigate = useNavigate();
   return (
     <img
-      onClick={() => navigate && navigate("/")}
+      onClick={() => navigate("/")}
       src={logo}
       alt="logo"
       className={styles.logo}
